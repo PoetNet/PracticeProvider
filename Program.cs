@@ -1,6 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+builder.Configuration.AddTextFile("config.txt");
+
+
+app.Map("/", (IConfiguration appConfig) => $"{appConfig["name"]} - {appConfig["age"]} - {appConfig["profession"]} - {appConfig["mude"]}!");
 
 app.Run();
